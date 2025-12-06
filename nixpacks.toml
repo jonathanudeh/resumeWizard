@@ -2,7 +2,7 @@
 nixPkgs = ["jdk17", "maven"]
 
 [phases.build]
-cmds = ["mvn clean install -f resumeWizard/backend/pom.xml"]
+cmds = ["mvn clean install -f backend/pom.xml"]
 
 [start]
 cmd = "bash start.sh"
