@@ -30,17 +30,17 @@ export const ResumePreviewPage: React.FC = () => {
 
   if (!cleanedResume) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] to-[#E0E7FF] py-12 px-4 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-[#1F2937] mb-4">
             No Resume Data
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-[#4B5563] mb-6">
             Please start by entering your resume details.
           </p>
           <button
             onClick={() => navigate("/")}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-all"
+            className="bg-[#1D4ED8] hover:bg-[#2563EB] text-white font-semibold py-2 px-6 rounded-lg transition-all"
           >
             Go Back to Input
           </button>
@@ -67,20 +67,20 @@ export const ResumePreviewPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] to-[#E0E7FF] py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => navigate("/")}
-            className="text-blue-600 hover:text-blue-800 font-medium mb-4 inline-flex items-center gap-2"
+            className="text-[#1D4ED8] hover:text-[#2563EB] font-medium mb-4 inline-flex items-center gap-2"
           >
             ← Back to Input
           </button>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-[#1F2937] mb-2">
             Resume Preview
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-[#4B5563]">
             Review your cleaned resume and select a template
           </p>
         </div>
@@ -92,7 +92,7 @@ export const ResumePreviewPage: React.FC = () => {
               <div className="space-y-6">
                 {/* Name */}
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900">
+                  <h2 className="text-3xl font-bold text-[#1F2937]">
                     {cleanedResume.name}
                   </h2>
                 </div>
@@ -100,10 +100,10 @@ export const ResumePreviewPage: React.FC = () => {
                 {/* Summary */}
                 {cleanedResume.summary && (
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h3 className="text-lg font-semibold text-[#1F2937] mb-2">
                       Professional Summary
                     </h3>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-[#4B5563] leading-relaxed">
                       {cleanedResume.summary}
                     </p>
                   </div>
@@ -112,12 +112,15 @@ export const ResumePreviewPage: React.FC = () => {
                 {/* Experience */}
                 {cleanedResume.experience.length > 0 && (
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h3 className="text-lg font-semibold text-[#1F2937] mb-2">
                       Experience
                     </h3>
                     <ul className="space-y-2">
                       {cleanedResume.experience.map((exp, idx) => (
-                        <li key={idx} className="text-gray-700 leading-relaxed">
+                        <li
+                          key={idx}
+                          className="text-[#4B5563] leading-relaxed"
+                        >
                           • {exp}
                         </li>
                       ))}
@@ -128,12 +131,15 @@ export const ResumePreviewPage: React.FC = () => {
                 {/* Education */}
                 {cleanedResume.education.length > 0 && (
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h3 className="text-lg font-semibold text-[#1F2937] mb-2">
                       Education
                     </h3>
                     <ul className="space-y-2">
                       {cleanedResume.education.map((edu, idx) => (
-                        <li key={idx} className="text-gray-700 leading-relaxed">
+                        <li
+                          key={idx}
+                          className="text-[#4B5563] leading-relaxed"
+                        >
                           • {edu}
                         </li>
                       ))}
@@ -144,14 +150,14 @@ export const ResumePreviewPage: React.FC = () => {
                 {/* Skills */}
                 {cleanedResume.skills.length > 0 && (
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h3 className="text-lg font-semibold text-[#1F2937] mb-2">
                       Skills
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {cleanedResume.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                          className="bg-[#DBEAFE] text-[#1D4ED8] px-3 py-1 rounded-full text-sm font-medium"
                         >
                           {skill}
                         </span>
@@ -173,15 +179,15 @@ export const ResumePreviewPage: React.FC = () => {
                     onClick={() => setSelectedTemplate(template.id)}
                     className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
                       selectedTemplate === template.id
-                        ? "border-blue-600 bg-blue-50"
+                        ? "border-[#1D4ED8] bg-[#EFF6FF]"
                         : "border-gray-300 bg-white hover:border-gray-400"
                     }`}
                     disabled={isPending}
                   >
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-[#1F2937]">
                       {template.name}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-[#4B5563]">
                       {template.description}
                     </p>
                   </button>
@@ -191,10 +197,10 @@ export const ResumePreviewPage: React.FC = () => {
               <button
                 onClick={handleGeneratePdf}
                 disabled={isPending}
-                className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all ${
+                className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-transform ${
                   isPending
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green-600 hover:bg-green-700 active:scale-95"
+                    : "bg-[#1D4ED8] hover:bg-[#2563EB] active:scale-95"
                 }`}
               >
                 {isPending ? "Generating PDF..." : "Generate PDF"}

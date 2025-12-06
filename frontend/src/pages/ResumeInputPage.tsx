@@ -1,10 +1,13 @@
+// src/pages/ResumeInputPage.tsx
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// Ensure you update your imports to reflect the revised components
 import {
   TextInput,
-  Textarea,
+  Textarea, // Assuming you have a Textarea component now
   SectionCard,
-  LoadingSpinner,
+  LoadingSpinner, // Assuming you have a LoadingSpinner component
 } from "../components";
 import { useCleanResume } from "../hooks/useCleanResume";
 import { useResumeContext } from "../context/useResumeContext";
@@ -28,21 +31,15 @@ export const ResumeInputPage: React.FC = () => {
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-    if (!formData.summary.trim()) {
-      newErrors.summary = "Professional summary is required";
-    }
-    if (!formData.experience.trim()) {
-      newErrors.experience = "Experience is required";
-    }
-    if (!formData.education.trim()) {
+    // Basic validation remains the same
+    if (!formData.name.trim()) newErrors.name = "Full Name is required";
+    if (!formData.summary.trim())
+      newErrors.summary = "Professional Summary is required";
+    if (!formData.experience.trim())
+      newErrors.experience = "Work Experience is required";
+    if (!formData.education.trim())
       newErrors.education = "Education is required";
-    }
-    if (!formData.skills.trim()) {
-      newErrors.skills = "Skills are required";
-    }
+    if (!formData.skills.trim()) newErrors.skills = "Skills are required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -52,44 +49,39 @@ export const ResumeInputPage: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error for this field when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     cleanResume(formData, {
       onSuccess: (response) => {
         setCleanedResume(response.cleanedResume);
         navigate("/preview");
       },
+      // You might want to add onError handling here
     });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    // Light gray background for a clean, professional look
+    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Smart Resume Enhancer
+        {/* Header - Mimicking BetterCV style with a blue accent */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold text-gray-900 mb-2">
+            Build your{" "}
+            <span className="text-blue-600">professional resume</span>
           </h1>
-          <p className="text-lg text-gray-600">
-            Enter your resume details and let our AI clean and enhance them
+          <p className="text-gray-600 text-lg">
+            Fill out the fields below and let our AI clean and enhance your
+            resume.
           </p>
         </div>
 
@@ -106,6 +98,7 @@ export const ResumeInputPage: React.FC = () => {
               required
               disabled={isPending}
             />
+            {/* You can add more personal fields here like Email, Phone, LinkedIn */}
           </SectionCard>
 
           <SectionCard title="Professional Summary">
@@ -114,11 +107,11 @@ export const ResumeInputPage: React.FC = () => {
               name="summary"
               value={formData.summary}
               onChange={handleChange}
-              placeholder="Write a brief professional summary about yourself..."
+              placeholder="Write a brief professional summary..."
               error={errors.summary}
               required
               disabled={isPending}
-              rows={3}
+              rows={4}
             />
           </SectionCard>
 
@@ -132,7 +125,7 @@ export const ResumeInputPage: React.FC = () => {
               error={errors.experience}
               required
               disabled={isPending}
-              rows={5}
+              rows={6}
             />
           </SectionCard>
 
@@ -146,7 +139,7 @@ export const ResumeInputPage: React.FC = () => {
               error={errors.education}
               required
               disabled={isPending}
-              rows={4}
+              rows={5}
             />
           </SectionCard>
 
@@ -160,31 +153,41 @@ export const ResumeInputPage: React.FC = () => {
               error={errors.skills}
               required
               disabled={isPending}
-              rows={3}
+              rows={4}
             />
           </SectionCard>
 
-          {/* Submit Button */}
-          <div className="flex gap-4 pt-4">
+          {/* Submit Button - Using the primary blue color */}
+          <div className="flex pt-4 justify-center">
             <button
               type="submit"
               disabled={isPending}
-              className={`flex-1 py-3 px-6 rounded-lg font-semibold text-white transition-all ${
+              className={`w-full sm:w-1/2 md:w-1/3 py-3 px-6 rounded-lg font-bold text-white transition-all duration-200 shadow-md ${
                 isPending
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 active:scale-95"
+                  ? "bg-blue-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700 active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-blue-300"
               }`}
             >
-              {isPending ? "Cleaning Resume..." : "Clean Resume"}
+              {isPending ? (
+                <div className="flex items-center justify-center">
+                  <LoadingSpinner className="w-5 h-5 mr-2 text-white" />
+                  Cleaning Resume...
+                </div>
+              ) : (
+                "Clean and Enhance Resume"
+              )}
             </button>
           </div>
         </form>
 
-        {/* Loading State */}
+        {/* Loading State - Replaced the fixed overlay with a more central spinner (assuming LoadingSpinner is provided) */}
         {isPending && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-8">
+          <div className="fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50">
+            <div className="flex flex-col items-center p-8 bg-white rounded-xl shadow-2xl border border-blue-200">
               <LoadingSpinner message="Processing your resume..." />
+              <p className="mt-4 text-lg font-medium text-gray-700">
+                Enhancing your details with AI...
+              </p>
             </div>
           </div>
         )}
@@ -192,3 +195,6 @@ export const ResumeInputPage: React.FC = () => {
     </div>
   );
 };
+
+// Note: Ensure your LoadingSpinner component accepts a 'message' prop and renders a visible spinner.
+// I have assumed the Textarea and LoadingSpinner components exist in your components directory.

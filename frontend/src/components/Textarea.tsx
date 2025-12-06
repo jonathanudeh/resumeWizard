@@ -1,3 +1,5 @@
+// src/components/Textarea.tsx (Create this file if it doesn't exist)
+
 import React from "react";
 
 interface TextareaProps {
@@ -21,7 +23,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   error,
   required = false,
   disabled = false,
-  rows = 4,
+  rows = 3,
 }) => {
   return (
     <div className="mb-4">
@@ -40,11 +42,11 @@ export const Textarea: React.FC<TextareaProps> = ({
         placeholder={placeholder}
         disabled={disabled}
         rows={rows}
-        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
+        className={`w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 resize-y ${
           error ? "border-red-500" : "border-gray-300"
         } ${disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white"}`}
       />
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
     </div>
   );
 };

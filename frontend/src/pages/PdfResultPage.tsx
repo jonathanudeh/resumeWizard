@@ -55,20 +55,20 @@ export const PdfResultPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] to-[#E0E7FF] py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-[#1F2937] mb-2">
             Your Resume PDF
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-[#4B5563]">
             Your resume is ready to download!
           </p>
         </div>
 
         {/* Success Message */}
-        <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="mb-8 p-4 bg-[#ECFDF3] border border-[#BBF7D0] rounded-lg">
           <div className="flex items-center gap-3">
             <div className="shrink-0">
               <svg
@@ -86,10 +86,10 @@ export const PdfResultPage: React.FC = () => {
               </svg>
             </div>
             <div>
-              <p className="text-green-800 font-semibold">
+              <p className="text-[#16A34A] font-semibold">
                 PDF Generated Successfully!
               </p>
-              <p className="text-green-700 text-sm">
+              <p className="text-[#16A34A] text-sm">
                 Your resume PDF has been generated with your selected template.
               </p>
             </div>
@@ -106,14 +106,14 @@ export const PdfResultPage: React.FC = () => {
         {/* Download Section */}
         <SectionCard title="Download Your Resume">
           <div className="space-y-4">
-            <p className="text-gray-600">
+            <p className="text-[#4B5563]">
               Your resume is ready to download. Click the button below to save
               your PDF file.
             </p>
             <div className="flex gap-4">
               <button
                 onClick={handleDownload}
-                className="flex-1 py-3 px-6 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+                className="flex-1 py-3 px-6 bg-[#1D4ED8] hover:bg-[#2563EB] text-white font-semibold rounded-lg transition-transform active:scale-95 flex items-center justify-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -132,7 +132,7 @@ export const PdfResultPage: React.FC = () => {
               </button>
               <button
                 onClick={() => navigate("/")}
-                className="flex-1 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all active:scale-95"
+                className="flex-1 py-3 px-6 bg-[#16A34A] hover:bg-[#15803D] text-white font-semibold rounded-lg transition-transform active:scale-95"
               >
                 Start Over
               </button>

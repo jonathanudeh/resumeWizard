@@ -1,15 +1,1 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
-
-/* Minimal page reset to ensure content is visible during debugging */
-html,
-body,
-#root {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
-  background: #f8fafc; /* light gray (Tailwind's gray-50) */
-}
+@import "tailwindcss";
