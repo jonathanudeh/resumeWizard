@@ -1,0 +1,9 @@
+com\smartresume\backend\controller\ResumeController.class
+com\smartresume\backend\SmartResumeBackendApplication.class
+com\smartresume\backend\dto\RawResumeRequest.class
+com\smartresume\backend\dto\PdfGenRequest.class
+com\smartresume\backend\dto\PdfGenRequest$ResumeData.class
+com\smartresume\backend\dto\CleanedResumeResponse.class
+com\smartresume\backend\service\PdfGenerationService.class
+com\smartresume\backend\service\ResumeCleaningService.class
+com\smartresume\backend\dto\CleanedResumeResponse$CleanedResume.class

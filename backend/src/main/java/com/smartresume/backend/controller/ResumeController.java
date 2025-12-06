@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController
+@RequestMapping("/api")
 @CrossOrigin(origins = "*") // Allow all origins for simplicity/hackathon
 public class ResumeController {
 

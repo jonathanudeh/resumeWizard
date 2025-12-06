@@ -55,12 +55,12 @@ export const apiService = {
 
   generatePdf: async (
     data: GeneratePdfRequest
-  ): Promise<GeneratePdfResponse> => {
-    const response = await apiClient.post<GeneratePdfResponse>(
+  ): Promise<Blob> => {
+    const response = await apiClient.post(
       "/generate-pdf",
       data,
       {
-        responseType: "json",
+        responseType: "blob",
       }
     );
     return response.data;
