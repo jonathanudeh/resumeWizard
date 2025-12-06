@@ -25,6 +25,11 @@ public class ResumeController {
         this.pdfService = pdfService;
     }
 
+    @GetMapping("/")
+    public String healthCheck() {
+        return "Smart Resume Backend is Running!";
+    }
+
     @PostMapping("/clean-resume")
     public ResponseEntity<CleanedResumeResponse> cleanResume(@RequestBody RawResumeRequest request) {
         CleanedResumeResponse response = cleaningService.cleanResume(request);
