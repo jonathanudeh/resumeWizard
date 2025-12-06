@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ResumeContext } from "./ResumeContext.type";
 import type { CleanedResume } from "../services/api";
+import { ResumeContext } from "./ResumeContext.type";
 
 export const ResumeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

@@ -30,7 +30,7 @@ export const ResumePreviewPage: React.FC = () => {
 
   if (!cleanedResume) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] to-[#E0E7FF] py-12 px-4 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-b from-[#EFF6FF] to-[#E0E7FF] py-12 px-4 flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-[#1F2937] mb-4">
             No Resume Data
@@ -67,7 +67,7 @@ export const ResumePreviewPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] to-[#E0E7FF] py-12 px-4">
+    <div className="min-h-screen bg-linear-to-b from-[#EFF6FF] to-[#E0E7FF] py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">

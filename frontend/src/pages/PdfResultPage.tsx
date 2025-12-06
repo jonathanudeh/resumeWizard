@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SectionCard, PdfViewer } from "../components";
 import { useResumeContext } from "../context/useResumeContext";
@@ -12,20 +12,12 @@ export const PdfResultPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { setPdfUrl } = useResumeContext();
-  const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
-
   const state = location.state as LocationState | null;
 
-  useEffect(() => {
-    if (state?.pdfData) {
-      // Create a data URL from base64 PDF
-      const dataUrl = `data:application/pdf;base64,${state.pdfData}`;
-      setPdfDataUrl(dataUrl);
-    } else if (state?.downloadUrl) {
-      setDownloadUrl(state.downloadUrl);
-    }
-  }, [state]);
+  const pdfDataUrl = state?.pdfData
+    ? `data:application/pdf;base64,${state.pdfData}`
+    : null;
+  const downloadUrl = state?.downloadUrl || null;
 
   useEffect(() => {
     if (pdfDataUrl) {
@@ -55,7 +47,7 @@ export const PdfResultPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#EFF6FF] to-[#E0E7FF] py-12 px-4">
+    <div className="min-h-screen bg-linear-to-b from-[#EFF6FF] to-[#E0E7FF] py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
