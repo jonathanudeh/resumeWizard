@@ -89,9 +89,9 @@ export const PdfResultPage: React.FC = () => {
         </div>
 
         {/* PDF Preview */}
-        {pdfDataUrl && (
+        {(pdfDataUrl || downloadUrl) && (
           <SectionCard title="PDF Preview">
-            <PdfViewer pdfUrl={pdfDataUrl} />
+            <PdfViewer pdfUrl={(pdfDataUrl || downloadUrl)!} />
           </SectionCard>
         )}
 

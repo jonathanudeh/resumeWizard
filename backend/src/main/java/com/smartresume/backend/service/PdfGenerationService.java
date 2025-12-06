@@ -20,20 +20,17 @@ public class PdfGenerationService {
 
     public byte[] generatePdf(PdfGenRequest request) throws IOException {
         Context context = new Context();
-        context.setVariable("resume", request.resume());
+        context.setVariable("resume", request.cleanedResume());
 
         // Select template based on request, default to template1
-        String templateName = request.template() != null && !request.template().isEmpty()
-                ? "resume_" + request.template()
-                : "resume_template_1";
-
-        // Simple fallback check (in real app, use better validation)
-        if (!templateName.equals("resume_template_1")) {
-            // For safety/Simplicity, force to template 1 if unknown or just default
-            // The prompt asked for "template1", "template2" capabilities.
-            // If user sends "template1", it maps to "resume_template_1"
-            // If file doesn't exist, Thymeleaf will error.
+        String templateName = "resume_template_1";
+        if ("template2".equalsIgnoreCase(request.template())) {
+            // For now we only have 1, but this logic is ready for 2
+            templateName = "resume_template_1";
+        } else if ("template1".equalsIgnoreCase(request.template())) {
+            templateName = "resume_template_1";
         }
+        // Fallback for any other string
 
         String htmlContent = templateEngine.process(templateName, context);
 

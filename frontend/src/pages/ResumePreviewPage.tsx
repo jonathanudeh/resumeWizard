@@ -53,14 +53,11 @@ export const ResumePreviewPage: React.FC = () => {
     generatePdf(
       { cleanedResume, template: selectedTemplate },
       {
-        onSuccess: (response) => {
-          if (response.pdfData) {
-            navigate("/result", { state: { pdfData: response.pdfData } });
-          } else if (response.downloadUrl) {
-            navigate("/result", {
-              state: { downloadUrl: response.downloadUrl },
-            });
-          }
+        onSuccess: (blob: Blob) => {
+          const url = URL.createObjectURL(blob);
+          navigate("/result", {
+            state: { downloadUrl: url },
+          });
         },
       }
     );

@@ -3,14 +3,13 @@ package com.smartresume.backend.dto;
 import java.util.List;
 
 public record PdfGenRequest(
-    String template,
-    ResumeData resume
-) {
+        String template,
+        ResumeData cleanedResume) {
     public record ResumeData(
-        String name,
-        String summary,
-        List<String> experience,
-        List<String> education,
-        List<String> skills
-    ) {}
+            String name,
+            String summary,
+            List<String> experience,
+            List<String> education,
+            List<String> skills) {
+    }
 }
