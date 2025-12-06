@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
+      .header {
+        text-align: center;
+        border-bottom: 2px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        margin: 0;
+        text-transform: uppercase;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      .section h2 {
+        background-color: #f0f0f0;
+        padding: 5px;
+        margin-top: 0;
+        font-size: 1.2em;
+        border-left: 5px solid #007bff;
+      }
+      ul {
+        list-style-type: disc;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1 th:text="${resume.name}">John Doe</h1>
+      <p th:text="${resume.summary}">
+        Senior Java Developer with 10 years of experience...
+      </p>
+    </div>
+
+    <div class="section" th:if="${not #lists.isEmpty(resume.experience)}">
+      <h2>Experience</h2>
+      <ul>
+        <li th:each="exp : ${resume.experience}" th:text="${exp}">
+          Software Engineer at Google...
+        </li>
+      </ul>
+    </div>
+
+    <div class="section" th:if="${not #lists.isEmpty(resume.education)}">
+      <h2>Education</h2>
+      <ul>
+        <li th:each="edu : ${resume.education}" th:text="${edu}">
+          BS Computer Science...
+        </li>
+      </ul>
+    </div>
+
+    <div class="section" th:if="${not #lists.isEmpty(resume.skills)}">
+      <h2>Skills</h2>
+      <ul>
+        <li th:each="skill : ${resume.skills}" th:text="${skill}">
+          Java, Spring Boot...
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
